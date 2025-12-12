@@ -124,10 +124,10 @@ export function QuizSteps() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 tracking-tight">
-              {currentStepData.title}
+              {currentStepData?.title}
             </h1>
             <p className="text-lg text-gray-600 mb-16 font-light">
-              {currentStepData.subtitle}
+              {currentStepData?.subtitle}
             </p>
             
             {/* Floating Options */}
@@ -137,7 +137,7 @@ export function QuizSteps() {
                   onLocationSelect={handleLocationSelect}
                   selectedLocation={selections.location}
                 />
-              ) : (
+              ) : currentStepData ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl">
                   {currentStepData.options.map((option, index) => (
                     <div key={option} className="flex justify-center">
@@ -157,7 +157,7 @@ export function QuizSteps() {
                     </div>
                   ))}
                 </div>
-              )}
+              ) : null}
             </div>
             
             {/* Continue Button for Step 2 */}
