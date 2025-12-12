@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FloatingOption } from '@/components/animations/FloatingOption'
+import { FloatingLocationStep } from '@/components/ui/FloatingLocationStep'
 import Link from 'next/link'
 
 const quizData = {
@@ -131,27 +132,32 @@ export function QuizSteps() {
             
             {/* Floating Options */}
             <div className="relative min-h-[400px] flex items-center justify-center">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl">
-                {currentStepData.options.map((option, index) => (
-                  <div key={option} className="flex justify-center">
-                    <FloatingOption
-                      delay={index * 0.3}
-                      isSelected={
-                        currentStep === 1 ? selections.location === option :
-                        currentStep === 2 ? selections.interests.includes(option) :
-                        selections.timing === option
-                      }
-                      onClick={() => {
-                        if (currentStep === 1) handleLocationSelect(option)
-                        else if (currentStep === 2) handleInterestSelect(option)
-                        else handleTimingSelect(option)
-                      }}
-                    >
-                      {option}
-                    </FloatingOption>
-                  </div>
-                ))}
-              </div>
+              {currentStep === 1 ? (
+                <FloatingLocationStep 
+                  onLocationSelect={handleLocationSelect}
+                  selectedLocation={selections.location}
+                />
+              ) : (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl">
+                  {currentStepData.options.map((option, index) => (
+                    <div key={option} className="flex justify-center">
+                      <FloatingOption
+                        delay={index * 0.3}
+                        isSelected={
+                          currentStep === 2 ? selections.interests.includes(option) :
+                          selections.timing === option
+                        }
+                        onClick={() => {
+                          if (currentStep === 2) handleInterestSelect(option)
+                          else handleTimingSelect(option)
+                        }}
+                      >
+                        {option}
+                      </FloatingOption>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             
             {/* Continue Button for Step 2 */}

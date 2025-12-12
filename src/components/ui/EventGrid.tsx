@@ -54,8 +54,17 @@ export function EventGrid() {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search)
       const location = params.get('location')
+      const interests = params.get('interests')
+      const timing = params.get('timing')
+      
       if (location && filterData.locations.includes(location)) {
         setActiveFilters(prev => ({ ...prev, location }))
+      }
+      if (interests) {
+        const interestArray = interests.split(',')
+        if (interestArray.length > 0 && filterData.types.includes(interestArray[0])) {
+          setActiveFilters(prev => ({ ...prev, type: interestArray[0] }))
+        }
       }
     }
   }, [])
@@ -63,6 +72,22 @@ export function EventGrid() {
   const handleFilterChange = (category: keyof typeof activeFilters, value: string) => {
     setActiveFilters(prev => ({ ...prev, [category]: value }))
   }
+
+  // Filter events based on active filters
+  const filteredEvents = mockEvents.filter(event => {
+    if (activeFilters.location !== "All Locations" && event.location !== activeFilters.location) {
+      return false
+    }
+    if (activeFilters.type !== "All Types" && event.type !== activeFilters.type) {
+      return false
+    }
+    if (activeFilters.price !== "All Prices") {
+      if (activeFilters.price === "Under €50" && event.price >= 50) return false
+      if (activeFilters.price === "€50-€100" && (event.price < 50 || event.price > 100)) return false
+      if (activeFilters.price === "€100+" && event.price <= 100) return false
+    }
+    return true
+  })
 
   return (
     <div className="min-h-screen bg-white">
@@ -170,7 +195,7 @@ export function EventGrid() {
         
         {/* Events Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {mockEvents.map((event, index) => (
+          {filteredEvents.map((event, index) => (
             <FloatingCard key={event.id} delay={index * 0.1}>
               <div className="aspect-video bg-gray-100 flex items-center justify-center text-4xl">
                 🎭

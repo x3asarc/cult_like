@@ -76,7 +76,7 @@ export function FloatingText({
 
   if (href) {
     return (
-      <Link href={`${href}?location=${encodeURIComponent(children as string)}`}>
+      <Link href="/quiz">
         {TextComponent}
       </Link>
     )
