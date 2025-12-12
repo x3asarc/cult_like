@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FloatingOption } from '@/components/animations/FloatingOption'
 import { FloatingLocationStep } from '@/components/ui/FloatingLocationStep'
+import { FloatingInterestStep } from '@/components/ui/FloatingInterestStep'
+import { FloatingMonthStep } from '@/components/ui/FloatingMonthStep'
 import Link from 'next/link'
 
 const quizData = {
@@ -35,10 +37,12 @@ const quizData = {
     title: "When Do You Prefer?",
     subtitle: "Choose your ideal timing for cultural events",
     options: [
-      "Weekday Evenings",
-      "Weekend Afternoons",
-      "Weekend Evenings",
-      "Any Time"
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June"
     ]
   }
 }
@@ -48,7 +52,7 @@ export function QuizSteps() {
   const [selections, setSelections] = useState({
     location: '',
     interests: [] as string[],
-    timing: ''
+    month: ''
   })
 
   const currentStepData = quizData[`step${currentStep}` as keyof typeof quizData]
@@ -67,8 +71,8 @@ export function QuizSteps() {
     }))
   }
 
-  const handleTimingSelect = (timing: string) => {
-    setSelections(prev => ({ ...prev, timing }))
+  const handleMonthSelect = (month: string) => {
+    setSelections(prev => ({ ...prev, month }))
     setTimeout(() => setCurrentStep(4), 500)
   }
 
@@ -76,7 +80,7 @@ export function QuizSteps() {
     const params = new URLSearchParams()
     if (selections.location) params.append('location', selections.location)
     if (selections.interests.length > 0) params.append('interests', selections.interests.join(','))
-    if (selections.timing) params.append('timing', selections.timing)
+    if (selections.month) params.append('month', selections.month)
     return `/events?${params.toString()}`
   }
 
@@ -137,26 +141,16 @@ export function QuizSteps() {
                   onLocationSelect={handleLocationSelect}
                   selectedLocation={selections.location}
                 />
-              ) : currentStepData ? (
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl">
-                  {currentStepData.options.map((option, index) => (
-                    <div key={option} className="flex justify-center">
-                      <FloatingOption
-                        delay={index * 0.3}
-                        isSelected={
-                          currentStep === 2 ? selections.interests.includes(option) :
-                          selections.timing === option
-                        }
-                        onClick={() => {
-                          if (currentStep === 2) handleInterestSelect(option)
-                          else handleTimingSelect(option)
-                        }}
-                      >
-                        {option}
-                      </FloatingOption>
-                    </div>
-                  ))}
-                </div>
+              ) : currentStep === 2 ? (
+                <FloatingInterestStep 
+                  onInterestSelect={handleInterestSelect}
+                  selectedInterests={selections.interests}
+                />
+              ) : currentStep === 3 ? (
+                <FloatingMonthStep 
+                  onMonthSelect={handleMonthSelect}
+                  selectedMonth={selections.month}
+                />
               ) : null}
             </div>
             

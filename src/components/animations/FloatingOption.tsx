@@ -70,6 +70,7 @@ export function FloatingOption({
         select-none 
         transition-colors 
         hover:border-gray-400
+        text-gray-900
         ${className}
       `}
     >
