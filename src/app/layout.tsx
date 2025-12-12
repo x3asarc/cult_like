@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { DM_Serif_Text } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const dmSerifText = DM_Serif_Text({ 
+  weight: ['400'],
+  subsets: ['latin'],
+  style: ['normal', 'italic']
+})
 
 export const metadata: Metadata = {
   title: 'Cultural Events Platform',
@@ -39,7 +43,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={dmSerifText.className}>
         <div className="min-h-screen bg-white">
           {children}
         </div>

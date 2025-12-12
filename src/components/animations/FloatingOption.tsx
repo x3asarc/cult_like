@@ -65,7 +65,6 @@ export function FloatingOption({
         ${isSelected ? 'border-gray-900 bg-gray-50' : 'border-gray-200'} 
         rounded-full 
         text-lg 
-        font-light 
         cursor-pointer 
         select-none 
         transition-colors 

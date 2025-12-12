@@ -92,7 +92,7 @@ export function QuizSteps() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center max-w-2xl"
         >
-          <h1 className="text-5xl font-light text-gray-900 mb-8">
+          <h1 className="text-5xl text-gray-900 mb-8">
             Perfect!
           </h1>
           <p className="text-xl text-gray-600 mb-8">
@@ -100,7 +100,7 @@ export function QuizSteps() {
           </p>
           <Link
             href={buildResultsUrl()}
-            className="inline-block bg-black text-white px-12 py-4 text-lg font-medium hover:bg-gray-800 transition-colors duration-200 rounded-sm"
+            className="inline-block bg-black text-white px-12 py-4 text-lg hover:bg-gray-800 transition-colors duration-200 rounded-sm"
           >
             View Your Events
           </Link>
@@ -127,10 +127,10 @@ export function QuizSteps() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 tracking-tight">
+            <h1 className="text-4xl md:text-5xl text-gray-900 mb-4 tracking-tight">
               {currentStepData?.title}
             </h1>
-            <p className="text-lg text-gray-600 mb-16 font-light">
+            <p className="text-lg text-gray-600 mb-16">
               {currentStepData?.subtitle}
             </p>
             

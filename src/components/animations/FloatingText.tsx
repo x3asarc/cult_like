@@ -53,7 +53,6 @@ export function FloatingText({
       onHoverEnd={() => setIsHovered(false)}
       className={`
         ${fontSize} 
-        font-light 
         text-gray-900 
         cursor-pointer 
         select-none 

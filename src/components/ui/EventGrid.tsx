@@ -94,7 +94,7 @@ export function EventGrid() {
       <header className="border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-light text-gray-900">
+            <Link href="/" className="text-2xl text-gray-900">
               Cultural Events
             </Link>
             <div className="flex space-x-6 text-sm">
@@ -111,10 +111,10 @@ export function EventGrid() {
       <main className="max-w-7xl mx-auto px-4 py-12">
         {/* Page Title */}
         <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 tracking-tight">
+          <h1 className="text-4xl md:text-5xl text-gray-900 mb-4 tracking-tight">
             All Events
           </h1>
-          <p className="text-lg text-gray-600 font-light">
+          <p className="text-lg text-gray-600">
             Discover upcoming cultural events across Vienna
           </p>
         </div>

@@ -9,7 +9,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'],
+        sans: ['DM Serif Text', 'serif'],
+        serif: ['DM Serif Text', 'serif'],
       },
     },
   },
