@@ -22,12 +22,12 @@ export const supabaseHelpers = {
   },
 
   // Mock months for quiz
-  async getMonthsForLocation(locationId: string) {
+  async getMonthsForLocation() {
     return [1, 2, 3, 4, 5, 6] // Jan-June 2025
   },
 
   // Mock event types for quiz
-  async getEventTypesForLocationAndMonth(locationId: string, month: number) {
+  async getEventTypesForLocationAndMonth() {
     return [
       { id: '1', name: 'Opera', icon: '🎭' },
       { id: '2', name: 'Classical Concert', icon: '🎼' },
@@ -38,14 +38,29 @@ export const supabaseHelpers = {
   },
 
   // Mock events for results
-  async getEventsForQuiz(filters: any) {
-    return Array.from({ length: 6 }, (_, i) => ({
+  async getEventsForQuiz() {
+    const eventNames = [
+      "La Traviata", "Don Giovanni", "The Magic Flute", 
+      "Carmen", "Tosca", "Rigoletto",
+      "Swan Lake", "The Nutcracker", "Giselle",
+      "Hamlet", "Macbeth", "The Tempest"
+    ]
+    
+    const venues = [
+      "Wiener Staatsoper", "Burgtheater", "Musikverein", 
+      "Konzerthaus", "Theater an der Wien", "Volkstheater",
+      "Akademietheater", "Raimund Theater"
+    ]
+    
+    const months = ["March", "April", "May", "June", "July", "August"]
+    
+    return Array.from({ length: 12 }, (_, i) => ({
       id: `event-${i + 1}`,
-      title: `Cultural Event ${i + 1}`,
-      venue: 'Wiener Staatsoper',
-      date: `2025-01-${15 + i}`,
-      price: 50 + (i * 10),
-      description: 'A wonderful cultural experience awaits you.',
+      title: eventNames[i % eventNames.length],
+      venue: venues[i % venues.length],
+      date: `${months[i % months.length]} ${Math.floor(Math.random() * 28) + 1}, 2025`,
+      price: 35 + (i * 15) + Math.floor(Math.random() * 20),
+      description: 'An extraordinary cultural experience in the heart of Vienna.',
       image: null
     }))
   }

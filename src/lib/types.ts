@@ -201,7 +201,7 @@ export type ReviewWithEvent = Review & {
 export interface ApiError {
   message: string
   code?: string
-  details?: any
+  details?: Record<string, unknown>
 }
 
 export interface ApiResponse<T> {
