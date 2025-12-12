@@ -55,7 +55,6 @@ export function EventGrid() {
       const params = new URLSearchParams(window.location.search)
       const location = params.get('location')
       const interests = params.get('interests')
-      const timing = params.get('timing')
       
       if (location && filterData.locations.includes(location)) {
         setActiveFilters(prev => ({ ...prev, location }))
