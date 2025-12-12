@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FloatingOption } from '@/components/animations/FloatingOption'
 import { FloatingLocationStep } from '@/components/ui/FloatingLocationStep'
 import { FloatingInterestStep } from '@/components/ui/FloatingInterestStep'
 import { FloatingMonthStep } from '@/components/ui/FloatingMonthStep'
