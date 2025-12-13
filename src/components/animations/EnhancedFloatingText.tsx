@@ -103,7 +103,7 @@ export function EnhancedFloatingText({
   
   return (
     <MotionElement
-      className={className}
+      {...(className && { className })}
       animate={animationProps}
       style={{
         display: 'inline-block',
