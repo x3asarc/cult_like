@@ -85,9 +85,13 @@ export function WordCloudButton({
   };
 
   const handleClick = (e: React.MouseEvent) => {
+    console.log('🖱️ WordCloudButton clicked:', item.id, item.text);
     e.preventDefault();
     if (!disabled) {
+      console.log('✅ Button not disabled, calling onClick');
       onClick();
+    } else {
+      console.log('❌ Button is disabled');
     }
   };
 

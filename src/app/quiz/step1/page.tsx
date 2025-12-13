@@ -23,10 +23,14 @@ export default function LocationStep() {
   const { setLocation } = useQuizStore();
 
   const handleLocationSelect = (locationId: string) => {
+    console.log('🔵 Location selected:', locationId);
     const selectedLocation = viennaLocations.find(loc => loc.id === locationId);
     
     if (selectedLocation) {
+      console.log('✅ Found location:', selectedLocation);
+      
       // Update store
+      console.log('📦 Updating store...');
       setLocation(locationId);
       
       // Track analytics
@@ -43,9 +47,13 @@ export default function LocationStep() {
       }
       
       // Auto-advance to step 2 (no Continue button needed)
+      console.log('🚀 Navigating to step 2 in 300ms...');
       setTimeout(() => {
+        console.log('⏰ Timeout complete, pushing to step 2');
         router.push('/quiz/step2');
       }, 300); // Short delay for visual feedback
+    } else {
+      console.error('❌ Location not found:', locationId);
     }
   };
 

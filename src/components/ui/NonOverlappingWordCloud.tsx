@@ -266,7 +266,10 @@ export function NonOverlappingWordCloud({
           <WordCloudButton
             key={item.id}
             item={item}
-            onClick={() => onItemClick(item.id)}
+            onClick={() => {
+              console.log('🔗 NonOverlappingWordCloud onClick triggered for:', item.id);
+              onItemClick(item.id);
+            }}
             minTapTarget={minTapTarget}
             animationSettings={animationSettings}
           />
