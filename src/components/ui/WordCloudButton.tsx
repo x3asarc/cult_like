@@ -194,7 +194,7 @@ export function TouchOptimizedWordCloudButton({
   const [touchStartTime, setTouchStartTime] = useState<number>(0);
   const [touchMoved, setTouchMoved] = useState(false);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const handleTouchStart = () => {
     setTouchStartTime(Date.now());
     setTouchMoved(false);
   };
