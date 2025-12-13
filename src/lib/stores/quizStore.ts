@@ -72,8 +72,8 @@ export const useQuizStore = create<QuizState>()(
         }));
         
         // Track analytics
-        if (typeof window !== 'undefined' && (window as any).analytics) {
-          (window as any).analytics.track('quiz_step_completed', {
+        if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+          (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('quiz_step_completed', {
             step: 1,
             stepName: 'location',
             selection: locationId,
@@ -90,8 +90,8 @@ export const useQuizStore = create<QuizState>()(
         }));
         
         // Track analytics
-        if (typeof window !== 'undefined' && (window as any).analytics) {
-          (window as any).analytics.track('quiz_step_completed', {
+        if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+          (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('quiz_step_completed', {
             step: 2,
             stepName: 'category',
             selection: categoryId,
@@ -108,8 +108,8 @@ export const useQuizStore = create<QuizState>()(
         }));
         
         // Track analytics
-        if (typeof window !== 'undefined' && (window as any).analytics) {
-          (window as any).analytics.track('quiz_completed', {
+        if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+          (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('quiz_completed', {
             step: 3,
             stepName: 'month',
             selection: monthIndex,
@@ -140,8 +140,8 @@ export const useQuizStore = create<QuizState>()(
         set(initialState);
         
         // Track analytics
-        if (typeof window !== 'undefined' && (window as any).analytics) {
-          (window as any).analytics.track('quiz_reset', {
+        if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+          (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('quiz_reset', {
             previousStep: get().currentStep,
             hadCompletedSteps: Object.values(get().filters).some(filter => filter !== null)
           });

@@ -98,9 +98,8 @@ export function SimpleProgressBar({ current, total }: { current: number; total: 
 /**
  * Vertical progress indicator for sidebar layouts
  */
-export function VerticalProgressIndicator({ current, total, steps }: {
+export function VerticalProgressIndicator({ current, steps }: {
   current: number;
-  total: number;
   steps: string[];
 }) {
   return (

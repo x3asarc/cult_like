@@ -30,7 +30,9 @@ export default function LocationStep() {
       setLocation(locationId);
       
       // Track analytics
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (typeof window !== 'undefined' && (window as any).analytics) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).analytics.track('click_location', {
           locationId,
           locationName: selectedLocation.text,

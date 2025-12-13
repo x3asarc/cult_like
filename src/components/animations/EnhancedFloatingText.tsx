@@ -99,7 +99,7 @@ export function EnhancedFloatingText({
   }
   
   // Return animated version
-  const MotionElement = motion(as) as any;
+  const MotionElement = motion(as as keyof JSX.IntrinsicElements);
   
   return (
     <MotionElement

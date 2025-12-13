@@ -23,8 +23,6 @@
     ],
     "deny": [],
     "ask": [],
-    "additionalDirectories": [
-      "C:\\c\\users\\hp\\documents"
-    ]
+    "additionalDirectories": ["C:\\c\\users\\hp\\documents"]
   }
 }

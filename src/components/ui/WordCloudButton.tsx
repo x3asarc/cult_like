@@ -248,8 +248,8 @@ export function AnalyticsWordCloudButton({
   
   const handleClickWithAnalytics = () => {
     // Track the click event
-    if (typeof window !== 'undefined' && (window as any).analytics) {
-      (window as any).analytics.track('click_word', {
+    if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+      (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('click_word', {
         step: stepContext,
         wordId: item.id,
         wordText: item.text,

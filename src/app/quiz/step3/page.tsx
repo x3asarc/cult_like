@@ -41,8 +41,8 @@ export default function MonthStep() {
       setMonth(monthIndex);
       
       // Track analytics
-      if (typeof window !== 'undefined' && (window as any).analytics) {
-        (window as any).analytics.track('click_month', {
+      if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+        (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('click_month', {
           monthId,
           monthName: selectedMonth.text,
           monthIndex,

@@ -133,9 +133,9 @@ export class WordCloudPerformanceMonitor {
     if (typeof window === 'undefined') return 0;
     
     try {
-      const memory = (performance as any).memory;
+      const memory = (performance as { memory?: { usedJSHeapSize: number } }).memory;
       return memory ? memory.usedJSHeapSize / 1024 / 1024 : 0; // MB
-    } catch (error) {
+    } catch {
       return 0;
     }
   }
@@ -148,9 +148,9 @@ export class WordCloudPerformanceMonitor {
     
     try {
       // Battery API is deprecated but still useful for optimization
-      const battery = (navigator as any).battery;
+      const battery = (navigator as { battery?: { level: number } }).battery;
       return battery ? battery.level * 100 : undefined;
-    } catch (error) {
+    } catch {
       return undefined;
     }
   }
@@ -207,12 +207,12 @@ export function measureLayoutPerformance<T>(
   itemCount: number
 ): { result: T; metrics: Partial<PerformanceMetrics> } {
   const startTime = performance.now();
-  const startMemory = (performance as any).memory?.usedJSHeapSize || 0;
+  const startMemory = (performance as { memory?: { usedJSHeapSize: number } }).memory?.usedJSHeapSize || 0;
   
   const result = layoutFunction();
   
   const endTime = performance.now();
-  const endMemory = (performance as any).memory?.usedJSHeapSize || 0;
+  const endMemory = (performance as { memory?: { usedJSHeapSize: number } }).memory?.usedJSHeapSize || 0;
   
   const duration = endTime - startTime;
   const memoryIncrease = Math.max(0, endMemory - startMemory) / 1024 / 1024; // MB
@@ -234,8 +234,8 @@ export function measureLayoutPerformance<T>(
   }
   
   // Track analytics
-  if (typeof window !== 'undefined' && (window as any).analytics) {
-    (window as any).analytics.track('wordcloud_layout_performance', {
+  if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+    (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('wordcloud_layout_performance', {
       algorithm: algorithmName,
       durationMs: duration,
       memoryMB: memoryIncrease,

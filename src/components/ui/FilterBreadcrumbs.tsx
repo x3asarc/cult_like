@@ -87,7 +87,7 @@ export function FilterBreadcrumbs({ filters }: FilterBreadcrumbsProps) {
  */
 export function CompactFilterBreadcrumbs({ filters }: FilterBreadcrumbsProps) {
   const activeFilters = Object.entries(filters)
-    .filter(([_, filter]) => filter && filter.label !== 'None selected yet' && filter.label !== 'Not selected')
+    .filter(([, filter]) => filter && filter.label !== 'None selected yet' && filter.label !== 'Not selected')
     .map(([key, filter]) => ({ key, ...filter }));
 
   if (activeFilters.length === 0) {

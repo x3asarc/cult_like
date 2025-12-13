@@ -5,7 +5,7 @@
  * by applying repulsion forces between overlapping items.
  */
 
-import { WordItem, PlacedItem, ContainerBounds, validateNoOverlaps } from './spiralLayout';
+import { WordItem, PlacedItem, ContainerBounds, validateNoOverlaps, spiralLayout } from './spiralLayout';
 
 interface ForceLayoutConfig {
   maxIterations: number;
@@ -249,7 +249,6 @@ export function hybridLayout(
   console.log('Attempting hybrid layout approach');
 
   // Try spiral layout first (faster)
-  const { spiralLayout } = require('./spiralLayout');
   const spiralResult = spiralLayout(items, containerBounds, minSpacing);
   
   // Check if spiral layout was successful

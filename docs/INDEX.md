@@ -14,6 +14,8 @@ This file lists all the `.docs/` files you need. **You can scaffold these files 
 - [x] `.docs/review/CHECKLIST.md` — Pre-commit checklist
 - [x] `scripts/seed.ts` — TypeScript seed file
 - [x] `git.workflow.md` — Git + versioning guide
+- [x] `.docs/features/MULTI_PAGE_DISCOVERY_FLOW.md` — Word-cloud flow fixes implementation plan
+- [x] `.docs/features/WORDCLOUD_ACTION_PLAN.md` — Prioritized action plan for overlap fixes
 
 ---
 
@@ -166,7 +168,9 @@ This file lists all the `.docs/` files you need. **You can scaffold these files 
 ### Features
 ```
 .docs/features/
-├── 01_quiz-flow.md         # Location → Month → Type
+├── MULTI_PAGE_DISCOVERY_FLOW.md # Word-cloud overlap fixes & flow improvements (CREATED)
+├── WORDCLOUD_ACTION_PLAN.md    # 3-week prioritized action plan for fixes (CREATED)
+├── 01_quiz-flow.md         # Location → Month → Type (legacy single-page)
 ├── 02_event-listing.md     # Event grid + filtering + radius
 ├── 03_event-detail.md      # Template page, schema.org
 ├── 04_user-auth.md         # Email signup, Supabase Auth

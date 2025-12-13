@@ -39,8 +39,8 @@ export default function EventTypeStep() {
       setCategory(categoryId);
       
       // Track analytics
-      if (typeof window !== 'undefined' && (window as any).analytics) {
-        (window as any).analytics.track('click_category', {
+      if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+        (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('click_category', {
           categoryId,
           categoryName: selectedCategory.text,
           eventCount: selectedCategory.value,
@@ -100,7 +100,7 @@ export default function EventTypeStep() {
             What type of cultural event?
           </h1>
           <p className="text-lg text-gray-600">
-            Pick what you're in the mood for
+            Pick what you&apos;re in the mood for
           </p>
         </div>
         

@@ -31,8 +31,8 @@ export function useReducedMotion(): boolean {
       }
       
       // Track analytics if available
-      if (typeof window !== 'undefined' && (window as any).analytics) {
-        (window as any).analytics.track('reduced_motion_preference_changed', {
+      if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+        (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('reduced_motion_preference_changed', {
           prefersReducedMotion: event.matches,
           timestamp: Date.now()
         });

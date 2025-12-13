@@ -1,11 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NonOverlappingWordCloud, type WordCloudItem } from './NonOverlappingWordCloud'
 import { ProgressIndicator } from './ProgressIndicator'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 // Vienna districts with realistic event counts - no overlapping
 const viennaLocations: WordCloudItem[] = [
@@ -40,7 +39,6 @@ const months: WordCloudItem[] = [
 ];
 
 export function QuizSteps() {
-  const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
   const [selections, setSelections] = useState({
     location: '',
@@ -55,8 +53,8 @@ export function QuizSteps() {
       setSelections(prev => ({ ...prev, location: locationId }))
       
       // Track analytics
-      if (typeof window !== 'undefined' && (window as any).analytics) {
-        (window as any).analytics.track('click_location', {
+      if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+        (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('click_location', {
           locationId,
           locationName: selectedLocation.text,
           eventCount: selectedLocation.value,
@@ -75,8 +73,8 @@ export function QuizSteps() {
       setSelections(prev => ({ ...prev, category: categoryId }))
       
       // Track analytics
-      if (typeof window !== 'undefined' && (window as any).analytics) {
-        (window as any).analytics.track('click_category', {
+      if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+        (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('click_category', {
           categoryId,
           categoryName: selectedCategory.text,
           eventCount: selectedCategory.value,
@@ -95,8 +93,8 @@ export function QuizSteps() {
       setSelections(prev => ({ ...prev, month: monthId }))
       
       // Track analytics
-      if (typeof window !== 'undefined' && (window as any).analytics) {
-        (window as any).analytics.track('click_month', {
+      if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+        (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('click_month', {
           monthId,
           monthName: selectedMonth.text,
           eventCount: selectedMonth.value,
@@ -209,7 +207,7 @@ export function QuizSteps() {
                   What type of cultural event?
                 </h1>
                 <p className="text-lg text-gray-600 mb-8">
-                  Pick what you're in the mood for
+                  Pick what you&apos;re in the mood for
                 </p>
                 
                 <div className="max-w-6xl mx-auto w-full">

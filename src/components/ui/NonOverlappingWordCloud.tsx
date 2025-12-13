@@ -5,7 +5,6 @@ import { WordCloudButton } from './WordCloudButton';
 import { 
   spiralLayout, 
   calculateFontSizes,
-  measureLayoutPerformance,
   validateNoOverlaps,
   type PlacedItem
 } from '../../lib/layout/spiralLayout';
@@ -16,7 +15,6 @@ import {
 import { 
   WordCloudPerformanceMonitor,
   optimizeAnimationForDevice,
-  createDebouncedLayoutCalculator,
   measureLayoutPerformance as measurePerformanceUtil,
   type PerformanceMetrics
 } from '../../lib/performance/wordCloudOptimizer';
@@ -380,8 +378,8 @@ export function useWordCloudMetrics() {
     });
 
     // Log to analytics if available
-    if (typeof window !== 'undefined' && (window as any).analytics) {
-      (window as any).analytics.track('wordcloud_layout_complete', {
+    if (typeof window !== 'undefined' && (window as { analytics?: { track: (event: string, data: Record<string, unknown>) => void } }).analytics) {
+      (window as { analytics: { track: (event: string, data: Record<string, unknown>) => void } }).analytics.track('wordcloud_layout_complete', {
         algorithm: stats.algorithm,
         layoutDurationMs: stats.duration,
         hasOverlaps: stats.hasOverlaps,
