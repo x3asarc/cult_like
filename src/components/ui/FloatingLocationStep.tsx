@@ -1,3 +1,4 @@
+
 'use client'
 
 import { FloatingText } from '@/components/animations/FloatingText'
